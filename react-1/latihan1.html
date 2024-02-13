@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Belajar React Pertemuan 1</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- babel dictionary -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #container {
+        width: 300px;
+        height: 300px;
+        background-color: aquamarine;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+      }
+
+      button {
+        width: fit-content;
+        font-size: 30px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script type="text/babel">
+      const container = document.getElementById("container");
+      const root = ReactDOM.createRoot(container);
+
+      function Button({ func, text }) {
+        return <button onClick={func}>{text}</button>;
+      }
+
+      function Counter({ number }) {
+        return <h2> {number} </h2>;
+      }
+
+      function HomePage() {
+        const [number, setNumber] = React.useState(0);
+
+        function kurang() {
+          setNumber(number - 1);
+        }
+        function tambah() {
+          setNumber(number + 1);
+        }
+        function reset() {
+          setNumber(0);
+        }
+
+        return (
+          <>
+            <div>
+              <Button func={kurang} text="-" />
+              <Counter number={number} />
+              <Button func={tambah} text="+" />
+            </div>
+            <div>
+              <Button func={reset} text="Reset!" />
+            </div>
+          </>
+        );
+      }
+
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
