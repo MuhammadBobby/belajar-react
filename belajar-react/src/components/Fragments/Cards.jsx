@@ -5,11 +5,11 @@ const CardProducts = ({ children }) => {
 const Body = ({ title, url, children }) => {
   return (
     <a href="">
-      <img src={url} alt={url} className="w-full rounded-lg" />
+      <img src={url} alt={url} className="w-full rounded-lg h-80" />
 
       <div className=" my-3">
-        <h1 className="text-xl font-bold">{title}</h1>
-        <p className="text-md font-light mt-2 text-justify leading-4">{children}</p>
+        <h1 className="text-xl font-bold">{title.substring(0, 20)}...</h1>
+        <p className="text-md font-light mt-2 text-justify leading-4">{children.substring(0, 100)}...</p>
       </div>
     </a>
   );
@@ -18,7 +18,7 @@ const Body = ({ title, url, children }) => {
 const Footer = ({ price, handleClick, id }) => {
   return (
     <div className="flex justify-between items-center">
-      <p className="font-bold text-lg">{price.toLocaleString("id-ID", { style: "currency", currency: "IDR" })}</p>
+      <p className="font-bold text-lg">{price.toLocaleString("id-ID", { style: "currency", currency: "USD" })}</p>
       <button onClick={() => handleClick(id)} type="button" className="w-1/3 p-2 text-center font-semibold rounded-md bg-blue-600">
         Add to Cart
       </button>
