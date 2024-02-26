@@ -1,12 +1,15 @@
 import { useEffect } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { DarkMode } from "../../context/DarkMode";
 
 const email = localStorage.getItem("email");
 
 const Navbar = () => {
   const [totalCart, setTotalCart] = useState(0);
   const cart = useSelector((state) => state.cart.data);
+  const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => acc + item.qty, 0);
@@ -25,6 +28,9 @@ const Navbar = () => {
         Logout
       </button>
       <div className="flex items-center bg-slate-800 p-2 rounded-full ml-5">{totalCart}</div>
+      <button className="flex items-center bg-teal-600 p-2 rounded-full ml-5" onClick={() => setIsDarkMode(!isDarkMode)}>
+        {isDarkMode ? "Light Mode" : "Dark Mode"}
+      </button>
     </div>
   );
 };

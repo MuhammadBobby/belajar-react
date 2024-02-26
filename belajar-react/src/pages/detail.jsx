@@ -3,10 +3,13 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailProducts } from "../services/product.service";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { DarkMode } from "../context/DarkMode";
 
 const DetailProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const { isDarkMode } = useContext(DarkMode);
 
   useEffect(() => {
     getDetailProducts(id).then((data) => {
@@ -15,7 +18,7 @@ const DetailProductPage = () => {
   }, [id]);
 
   return (
-    <div className="flex justify-center items-center w-full min-h-screen">
+    <div className={`flex justify-center items-center w-full min-h-screen ${isDarkMode && "bg-slate-800 text-white"}`}>
       {Object.keys(product).length > 0 && (
         <div className="flex font-sans max-w-3xl">
           <div className="flex-none w-48 relative">

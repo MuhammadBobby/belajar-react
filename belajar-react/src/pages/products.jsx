@@ -4,9 +4,12 @@ import { useEffect } from "react";
 import { getProducts } from "../services/product.service";
 import TableCart from "../components/Fragments/TableCart";
 import Navbar from "../components/Layouts/Navbar";
+import { useContext } from "react";
+import { DarkMode } from "../context/DarkMode";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const { isDarkMode } = useContext(DarkMode);
 
   // const handleClick = (id) => {
   //   const newCart = products.find((product) => product.id === id);
@@ -37,7 +40,7 @@ const ProductsPage = () => {
 
   return (
     <>
-      <div className="flex justify-between mt-16">
+      <div className={`flex justify-between pt-16 ${isDarkMode && "bg-slate-800 text-white"}`}>
         <div className="w-2/3 flex flex-wrap justify-rounded ">
           {products.map((product) => (
             <CardProducts key={product.id}>
